@@ -1,8 +1,0 @@
----
-applications:
-- name: gemfire-test
-  memory: 512M
-  instances: 1
-  host: gemfire-test
-  domain: cloud.io
-  path: ./target/cloudfoundry-gemfire-0.0.1-SNAPSHOT.war
