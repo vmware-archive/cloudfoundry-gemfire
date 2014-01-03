@@ -9,7 +9,7 @@ Prior to utilizing this demo Application it is assumed you have:
 gfsh> execute function --id=provision --arguments=test
  ```
  
-1. Build your application using maven
+#### Build your application using maven
  ```
 C02JW12SDKQ5-3:cf-gemfire azwickey$ mvn install
 [INFO] Scanning for projects...
@@ -42,7 +42,7 @@ C02JW12SDKQ5-3:cf-gemfire azwickey$ mvn install
 [INFO] ------------------------------------------------------------------------
 ```
  
-2. Deploy the application using the CloudFoundry CLI, creating a gemfire service binding along the way:
+### Deploy the application using the CloudFoundry CLI, creating a gemfire service binding along the way:
 ```
 C02JW12SDKQ5-3:cf-gemfire azwickey$ cf push --path target/cloudfoundry-gemfire-0.0.1-SNAPSHOT.war 
 
@@ -111,7 +111,7 @@ Checking status of app 'gemfire-cloud'...
 Push successful! App 'gemfire-cloud' available at gemfire-cloud.10.244.0.34.xip.io
 ```
 
-3.  You should now be able to put and get from a cache defined in the app using a browser or command line app:
+### You should now be able to put and get from a cache defined in the app using a browser or command line app:
 ```
 C02JW12SDKQ5-3:cf-gemfire azwickey$ curl http://gemfire-cloud.10.244.0.34.xip.io/put/some-awesome-value/HelloGemfire
 
