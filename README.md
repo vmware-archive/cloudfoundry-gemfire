@@ -7,6 +7,19 @@ Simple Sample app to demonstrate the Gemfire Service Broker for CloudFoundry.  P
 * Running the sample app assumes there is a region created called 'test'.  This may be created using GFSH and service broker functions installed along with the Gemfire Service broker:
 ```<nowiki>
 gfsh> execute function --id=provision --arguments=test
+Execution summary
+
+            Member ID/Name              | Function Execution Result
+--------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+10.244.0.110(gemfire-0:12295)<v1>:34575 | While executing function : provision on member : 10.244.0.110(gemfire-0:12295)<v1>:34575 error occured : Cannot return any result as the Function#hasResult() is false
+10.244.0.114(gemfire-1:12277)<v2>:48356 | While executing function : provision on member : 10.244.0.114(gemfire-1:12277)<v2>:48356 error occured : Cannot return any result as the Function#hasResult() is false
+
+gfsh> list regions
+List of regions
+------------------------------------
+broker-plan
+broker-provision
+test</nowiki>
  ```
  
 1. Build your application using maven
