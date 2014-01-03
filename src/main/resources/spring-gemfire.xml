@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:gfe="http://www.springframework.org/schema/gemfire"
+	xmlns:gfe-data="http://www.springframework.org/schema/data/gemfire"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:cloud="http://www.springframework.org/schema/cloud"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/gemfire http://www.springframework.org/schema/gemfire/spring-gemfire.xsd
+		http://www.springframework.org/schema/data/gemfire http://www.springframework.org/schema/data/gemfire/spring-data-gemfire.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+		http://www.springframework.org/schema/cloud http://www.springframework.org/schema/cloud/spring-cloud.xsd">
+	
+	<!-- Required of we run as a non-Boot app -->
+	<context:property-placeholder location="classpath:application.properties"/>
+	
+	<!-- This piece is the key for CloudFoundry Auto-Reconfiguration -->
+	<cloud:service-scan/>
+	
+	<gfe:client-cache properties-ref="props" />
+	
+	<util:properties id="props">
+    	<prop key="log-level">config</prop>
+    </util:properties>
+
+	<gfe:pool subscription-enabled="true">
+		<gfe:locator host="${locator.host}" port="${locator.port}"/>
+	</gfe:pool>
+	
+	<!-- Admin Regions used for Broker tracking tasks -->
+	<gfe:client-region id="test" name="test" shortcut="PROXY" />
+	
+	<bean id="planTemplate" class="org.springframework.data.gemfire.GemfireTemplate" p:region-ref="test"/>
+	
+</beans>
