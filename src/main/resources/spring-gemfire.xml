@@ -34,6 +34,6 @@
 	
 	<gfe:client-region id="test" name="test" shortcut="PROXY" />
 	
-	<bean id="planTemplate" class="org.springframework.data.gemfire.GemfireTemplate" p:region-ref="test"/>
+	<bean id="template" class="org.springframework.data.gemfire.GemfireTemplate" p:region-ref="test"/>
 	
 </beans>
