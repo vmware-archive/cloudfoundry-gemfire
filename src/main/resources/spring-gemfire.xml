@@ -32,7 +32,6 @@
 		<gfe:locator host="${locator.host}" port="${locator.port}"/>
 	</gfe:pool>
 	
-	<!-- Admin Regions used for Broker tracking tasks -->
 	<gfe:client-region id="test" name="test" shortcut="PROXY" />
 	
 	<bean id="planTemplate" class="org.springframework.data.gemfire.GemfireTemplate" p:region-ref="test"/>
