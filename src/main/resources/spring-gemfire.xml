@@ -18,10 +18,7 @@
 	
 	<!-- Required of we run as a non-Boot app -->
 	<context:property-placeholder location="classpath:application.properties"/>
-	
-	<!-- This piece is the key for CloudFoundry Auto-Reconfiguration --> 
-	<cloud:service-scan/> 
-	
+
 	<gfe:client-cache properties-ref="props" />
 	
 	<util:properties id="props">
@@ -35,5 +32,10 @@
 	<gfe:client-region id="test" name="test" shortcut="PROXY" />
 	
 	<bean id="template" class="org.springframework.data.gemfire.GemfireTemplate" p:region-ref="test"/>
+	
+	<beans profile="cloud">
+		<!-- This piece is the key for CloudFoundry Auto-Reconfiguration -->
+		<cloud:service-scan/>		
+	</beans>
 	
 </beans>
