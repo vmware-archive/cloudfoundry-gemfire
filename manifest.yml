@@ -1,0 +1,16 @@
+---
+applications:
+- name: gemfire-cloud
+  memory: 512M
+  instances: 1
+  host: gemfire-cloud
+  domain: 192.168.1.170.xip.io
+  path: ./target/cloudfoundry-gemfire-0.0.1-SNAPSHOT.jar
+  env:
+    SPRING_PROFILES_ACTIVE: cloud
+  services:
+    gemfire-dev:
+      label: p-gemfire
+      provider: 
+      version: 
+      plan: 1GB-replicated
