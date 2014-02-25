@@ -40,6 +40,13 @@ public class HomeController {
 		_template.put(id,  value);
 	}
 	
+	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+	@ResponseBody
+	public void delete(@PathVariable String id) {
+		LOG.info("Deleting key [" + id + "] from Gemfire");
+		_template.remove(id);
+	}
+	
 	@RequestMapping(value = "/get", method = RequestMethod.GET)
 	@ResponseBody
 	public Map<String,String> getAll() {

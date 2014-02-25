@@ -24,25 +24,27 @@
 		</div>
 		<div id="main-content">
 			<div>
-				<label class="form-label" type="text">
-					Enter Key/Value to add to Gemfire:
-				</label>
-				<input type="text" value="key"/>
-				<input type="text" value="value"/>
-				<img width="40" height="40" src="img/Plus.png">
-				
+				<form id="gemfireAdd" data-bind="action: add">
+					<label class="form-label" type="text">Enter Key/Value to add to Gemfire:</label>
+					<input id="input_key" type="text" data-bind="value: gemfireAdd().key, submit: add" />
+					<input id="input_value" type="text" data-bind="value: gemfireAdd().val, submit: add" />
+					<input type="image" src="img/Plus.png" width="40" height="40" name="submit" id="add" data-bind="click: add">
+				</form>
 			</div>
-			<table class="table table-striped" id="gemfiredata">
+			<table class="table table-striped" id="gemfireData">
 				<thead>
 					<tr>
+						<th></th>
 						<th>Key</th>
 						<th>Value</th>
 					</tr>
 				</thead>
 				<tbody data-bind="foreach: gemfireData().rows">
-					<tr>
-						<td data-bind="text: data_key"></td>
-						<td data-bind="text: data_val"></td>
+					<tr>	
+							<td width="30" id="remove" data-bind="click: remove"><img src="img/remove.png" width="30" height="30" ></td>
+							<td data-bind="text: data_key"></td>
+							<td data-bind="text: data_val"></td>
+					
 					</tr>
 				</tbody>
 			</table>
@@ -64,7 +66,7 @@
 			model.start();
 
 			//refresh every x seconds
-			window.setInterval(model.refresh, 5000);
+			window.setInterval(model.refresh, 1000);
 
 		})();
 	</script>
