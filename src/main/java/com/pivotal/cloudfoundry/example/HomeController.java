@@ -27,7 +27,7 @@ public class HomeController {
 	@ResponseBody
 	public Map<String,String> get(@PathVariable String id) {
 		LOG.info("Getting value for key [" + id + "] from Gemfire");
-		Map<String,String> result = new HashMap<>();
+		Map<String,String> result = new HashMap<String,String>();
 		String value = _template.get(id);
 		if(value != null) result.put(id, value);
 		return result;
@@ -44,7 +44,7 @@ public class HomeController {
 	@ResponseBody
 	public Map<String,String> getAll() {
 		LOG.info("Getting all values");
-		Map<String,String> result = new HashMap<>();
+		Map<String,String> result = new HashMap<String,String>();
 		for(Object key : _template.getRegion().keySetOnServer()) {
 			result.put(key.toString(), (String) _template.get(key));
 		}
