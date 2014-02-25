@@ -19,8 +19,8 @@
 	<!-- Required of we run as a non-Boot app -->
 	<context:property-placeholder location="classpath:application.properties"/>
 	
-	<!-- This piece is the key for CloudFoundry Auto-Reconfiguration 
-	<cloud:service-scan/> -->
+	<!-- This piece is the key for CloudFoundry Auto-Reconfiguration --> 
+	<cloud:service-scan/> 
 	
 	<gfe:client-cache properties-ref="props" />
 	
