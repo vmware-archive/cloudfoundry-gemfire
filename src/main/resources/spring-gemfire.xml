@@ -24,10 +24,6 @@
 	<util:properties id="props">
     	<prop key="log-level">config</prop>
     </util:properties>
-
-	<gfe:pool id="gf-pool" subscription-enabled="true">
-		<gfe:locator host="${locator.host}" port="${locator.port}"/>
-	</gfe:pool>
 	
 	<gfe:client-region id="test" name="test" shortcut="PROXY" />
 	
@@ -37,9 +33,17 @@
 		<constructor-arg ref="gf-pool" />
 	</bean>
 	
+	<beans profile="default" >
+		<gfe:pool id="gf-pool" subscription-enabled="true">
+			<gfe:locator host="${locator.host}" port="${locator.port}"/>
+		</gfe:pool>
+	</beans>
+	
 	<beans profile="cloud">
 		<!-- This piece is the key for CloudFoundry Auto-Reconfiguration -->
-		<cloud:service-scan/>		
+		<cloud:service-scan/>
+		
+		<cloud:service id="gf-pool" connector-type="com.gemstone.gemfire.cache.client.Pool" />
 	</beans>
 	
 </beans>
