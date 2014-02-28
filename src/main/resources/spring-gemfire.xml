@@ -25,13 +25,17 @@
     	<prop key="log-level">config</prop>
     </util:properties>
 
-	<gfe:pool subscription-enabled="true">
+	<gfe:pool id="gf-pool" subscription-enabled="true">
 		<gfe:locator host="${locator.host}" port="${locator.port}"/>
 	</gfe:pool>
 	
 	<gfe:client-region id="test" name="test" shortcut="PROXY" />
 	
 	<bean id="template" class="org.springframework.data.gemfire.GemfireTemplate" p:region-ref="test"/>
+	
+	<bean id="functionTemplate" class="org.springframework.data.gemfire.function.execution.GemfireOnServersFunctionTemplate">
+		<constructor-arg ref="gf-pool" />
+	</bean>
 	
 	<beans profile="cloud">
 		<!-- This piece is the key for CloudFoundry Auto-Reconfiguration -->
