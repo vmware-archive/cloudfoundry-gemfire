@@ -16,9 +16,6 @@
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
 		http://www.springframework.org/schema/cloud http://www.springframework.org/schema/cloud/spring-cloud.xsd">
 	
-	<!-- Required of we run as a non-Boot app -->
-	<context:property-placeholder location="classpath:application.properties"/>
-
 	<gfe:client-cache id="gemfireCache" properties-ref="props" />
 	
 	<util:properties id="props">
@@ -34,14 +31,19 @@
 	</bean>
 	
 	<beans profile="default" >
+		<!-- Required of we run as a non-Boot app -->
+        	<context:property-placeholder location="classpath:application.properties"/>
+
 		<gfe:pool id="gemfirePool" subscription-enabled="true">
 			<gfe:locator host="${locator.host}" port="${locator.port}"/>
 		</gfe:pool>
 	</beans>
 	
 	<beans profile="cloud">
-		<!-- This piece is the key for CloudFoundry Auto-Reconfiguration
-		<cloud:service-scan/>  -->
+		<!-- This piece is the key for CloudFoundry Auto-Reconfiguration -->
+		<cloud:service-scan />
+		<cloud:properties id="cloudProperties" />
+		<context:property-placeholder properties-ref="cloudProperties" />
 		
 		<gfe:pool id="gemfirePool" subscription-enabled="true">
 			<gfe:locator host="${cloud.services.gemfire-dev.connection.host}" port="${cloud.services.gemfire-dev.connection.port}"/>
