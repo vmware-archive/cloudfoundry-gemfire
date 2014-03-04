@@ -30,11 +30,11 @@
 	<bean id="template" class="org.springframework.data.gemfire.GemfireTemplate" p:region-ref="test"/>
 	
 	<bean id="functionTemplate" class="org.springframework.data.gemfire.function.execution.GemfireOnServersFunctionTemplate">
-		<constructor-arg ref="gf-pool" />
+		<constructor-arg ref="gemfirePool" />
 	</bean>
 	
 	<beans profile="default" >
-		<gfe:pool id="gf-pool" subscription-enabled="true">
+		<gfe:pool id="gemfirePool" subscription-enabled="true">
 			<gfe:locator host="${locator.host}" port="${locator.port}"/>
 		</gfe:pool>
 	</beans>
@@ -43,7 +43,7 @@
 		<!-- This piece is the key for CloudFoundry Auto-Reconfiguration -->
 		<cloud:service-scan/>
 		
-		<cloud:service id="gf-pool" connector-type="com.gemstone.gemfire.cache.client.Pool" />
+		<cloud:service id="gemfirePool" connector-type="com.gemstone.gemfire.cache.client.Pool" />
 	</beans>
 	
 </beans>
