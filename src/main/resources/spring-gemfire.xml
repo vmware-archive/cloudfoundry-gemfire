@@ -19,7 +19,7 @@
 	<!-- Required of we run as a non-Boot app -->
 	<context:property-placeholder location="classpath:application.properties"/>
 
-	<gfe:client-cache properties-ref="props" />
+	<gfe:client-cache id="gemfireCache" properties-ref="props" />
 	
 	<util:properties id="props">
     	<prop key="log-level">config</prop>
@@ -40,10 +40,12 @@
 	</beans>
 	
 	<beans profile="cloud">
-		<!-- This piece is the key for CloudFoundry Auto-Reconfiguration -->
-		<cloud:service-scan/>
+		<!-- This piece is the key for CloudFoundry Auto-Reconfiguration
+		<cloud:service-scan/>  -->
 		
-		<cloud:service id="gemfirePool" connector-type="com.gemstone.gemfire.cache.client.Pool" />
+		<gfe:pool id="gemfirePool" subscription-enabled="true">
+			<gfe:locator host="${cloud.services.gemfire-dev.connection.host}" port="${cloud.services.gemfire-dev.connection.port}"/>
+		</gfe:pool>
 	</beans>
 	
 </beans>
