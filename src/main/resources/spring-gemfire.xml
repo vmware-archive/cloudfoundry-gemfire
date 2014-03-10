@@ -42,7 +42,10 @@
 	<beans profile="cloud">
 		<!-- This piece is the key for CloudFoundry Auto-Reconfiguration
 		<cloud:service-scan /> -->
+		
+		
 		<cloud:properties id="cloudProperties" />
+		
 		<context:property-placeholder properties-ref="cloudProperties" />
 		
 		<gfe:pool id="gemfirePool" subscription-enabled="true">
