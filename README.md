@@ -1,4 +1,4 @@
-# Cloudfoundry-gemfire
+<h1> VMware has ended active development of this project, this repository will no longer be updated.</h1><br># Cloudfoundry-gemfire
 
 Prior to utilizing this demo Application it is assumed you have:
 
